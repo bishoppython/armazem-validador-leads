@@ -1,6 +1,6 @@
 [project]
 name = "validador-leads"
-version = "0.1.0"
+version = "0.1.1"
 description = "Validação, deduplicação e score de bases de leads B2B, com seção de LGPD (portfólio Armazém Agreste)"
 readme = "README.md"
 authors = [

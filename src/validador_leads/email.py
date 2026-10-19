@@ -58,11 +58,12 @@ def corrigir_dominio(dominio: str) -> str:
     if dominio in TYPOS:
         return TYPOS[dominio]
     pessoais = carregar("pessoais")
-    if dominio in pessoais:
+    # Domínio conhecido não é typo: "yopmail.com" (descartável) não pode virar "ymail.com".
+    if dominio in pessoais or dominio in carregar("descartaveis"):
         return dominio
     # Domínio a uma letra de um provedor conhecido (ex.: "hotmaill.com").
     # Ordenado: a ordem de um frozenset muda entre processos e decidiria empates.
-    parecido = difflib.get_close_matches(dominio, sorted(pessoais), n=1, cutoff=0.9)
+    parecido = difflib.get_close_matches(dominio, sorted(pessoais), n=1, cutoff=0.92)
     return parecido[0] if parecido else dominio
 
 

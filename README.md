@@ -15,20 +15,20 @@ Projeto 5 do portfólio **Armazém Agreste**. Todos os dados são sintéticos. E
 | | Leads |
 |---|---|
 | Entrada | 10.600 |
-| Válidos | 8.795 (83%) |
+| Válidos | 8.789 (83%) |
 | Faixa A (score ≥ 80) | 6.575 |
-| Faixa B (60–79) | 2.054 |
+| Faixa B (60–79) | 2.048 |
 | Faixa C (< 60) | 166 |
-| **Descartados** | **1.805** |
+| **Descartados** | **1.811** |
 
 | Motivo do descarte | Leads |
 |---|---|
 | Duplicado (mesmo e-mail, ou mesmo nome + empresa) | 907 |
 | E-mail com sintaxe inválida | 315 |
 | Domínio sem MX | 314 |
-| E-mail descartável (mailinator, yopmail…) | 269 |
+| E-mail descartável (mailinator, yopmail…) | 275 |
 
-Além disso, 415 e-mails tiveram o domínio corrigido (`gmial.com` → `gmail.com`) e 496 telefones foram marcados como inválidos. Relatório completo: [`exemplos/relatorio-10k.json`](exemplos/relatorio-10k.json). O resultado é reprodutível: a mesma semente gera a mesma base e a mesma saída em qualquer processo (há teste para isso).
+Além disso, 409 e-mails tiveram o domínio corrigido (`gmial.com` → `gmail.com`) e 496 telefones foram marcados como inválidos. Relatório completo: [`exemplos/relatorio-10k.json`](exemplos/relatorio-10k.json). O resultado é reprodutível: a mesma semente gera a mesma base e a mesma saída em qualquer processo (há teste para isso).
 
 O gerador injeta 6% de duplicatas exatas; o resto das 907 vem de pessoas com o mesmo nome na mesma empresa, mas com outro e-mail, que o Faker produz como numa base real.
 
@@ -83,6 +83,7 @@ Isto não é parecer jurídico; a base legal de cada campanha deve ser avaliada 
 
 - **`email-validator` + `dnspython`**, no lugar do `validate_email`, que está sem manutenção. Ver [ADR 0001](docs/adr/0001-validacao-sem-smtp-e-sem-raspar-linkedin.md).
 - **Sem SMTP:** a porta 25 costuma ser bloqueada, domínios catch-all aceitam qualquer endereço e a sondagem pode pôr o IP em lista de bloqueio.
+- **Typo não vale para domínio conhecido:** `yopmail.com` (descartável) fica a 0,90 de semelhança de `ymail.com` (Yahoo). Na v0.1.0 ele era "corrigido" e passava como válido; a integração com o serviço de prospecção revelou o caso. Agora domínio que está numa das listas nunca é corrigido, e o corte subiu para 0,92.
 - **Não adivinhar:** o validador só corrige o que tem uma resposta certa. Espaço no meio do e-mail torna o endereço inválido, em vez de virar um palpite.
 - **Demo offline:** com `--mx simulado`, os domínios `*.inativo.example` não têm MX e os outros têm. Com `--mx real` (o padrão), a consulta é DNS de verdade.
 

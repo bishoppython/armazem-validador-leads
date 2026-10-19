@@ -29,6 +29,9 @@ def test_email_normaliza_e_corrige(bruto: str, esperado: str | None, corrigido: 
 
 def test_email_classifica_descartavel_pessoal_e_funcao() -> None:
     assert email.analisar("x@mailinator.com").descartavel
+    # yopmail.com fica a 0,90 de ymail.com: descartável nunca é "corrigido" para provedor legítimo.
+    yop = email.analisar("x@yopmail.com")
+    assert yop.descartavel and not yop.corrigido and yop.dominio == "yopmail.com"
     assert email.analisar("x@uol.com.br").pessoal
     assert email.analisar("vendas@malharia.example").funcao
     corporativo = email.analisar("joana.lima@malharia.example")
