@@ -1,0 +1,60 @@
+[project]
+name = "validador-leads"
+version = "0.1.0"
+description = "Validação, deduplicação e score de bases de leads B2B, com seção de LGPD (portfólio Armazém Agreste)"
+readme = "README.md"
+authors = [
+    { name = "bispo", email = "bishoppython@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "dnspython>=2.9.0",
+    "email-validator>=2.3.0",
+    "httpx>=0.28.1",
+    "pandas>=3.0.6",
+    "typer>=0.27.3",
+]
+
+[project.scripts]
+leads = "validador_leads.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "faker>=40.43.0",
+    "mypy>=2.4.0",
+    "pandas-stubs>=3.0.5.260914",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[project.optional-dependencies]
+dados = [
+    "faker>=30",
+    "openpyxl>=3.1",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+# B008: typer.Option no default é o padrão do Typer; SIM905: listas como string são mais legíveis.
+ignore = ["B008", "SIM905"]
+
+[tool.mypy]
+strict = true
+packages = ["validador_leads"]
+mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["faker"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

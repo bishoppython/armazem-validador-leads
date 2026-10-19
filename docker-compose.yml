@@ -1,0 +1,8 @@
+# docker compose run --rm leads   → gera 10 mil leads sintéticos e valida (MX simulado)
+# Para validar a sua planilha:  docker compose run --rm -v "$PWD/minha.csv:/app/dados/minha.csv" leads validar dados/minha.csv -o dados/saida.csv
+services:
+  leads:
+    build: .
+    volumes: ["./dados:/app/dados"]
+    entrypoint: ["sh", "-c"]
+    command: ["uv run --no-sync leads gerar && uv run --no-sync leads validar dados/leads_sujos.csv -o dados/leads_validados.csv --relatorio dados/relatorio.json --mx simulado"]

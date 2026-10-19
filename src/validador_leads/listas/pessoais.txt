@@ -1,0 +1,25 @@
+# Provedores de e-mail pessoal: o lead existe, mas não é um endereço da empresa.
+gmail.com
+googlemail.com
+hotmail.com
+hotmail.com.br
+outlook.com
+outlook.com.br
+live.com
+msn.com
+yahoo.com
+yahoo.com.br
+ymail.com
+icloud.com
+me.com
+uol.com.br
+bol.com.br
+terra.com.br
+ig.com.br
+globo.com
+globomail.com
+r7.com
+zipmail.com.br
+protonmail.com
+proton.me
+aol.com

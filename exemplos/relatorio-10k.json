@@ -1,0 +1,30 @@
+{
+  "entrada": 10600,
+  "validos": 8795,
+  "descartados": 1805,
+  "faixas": {
+    "A": 6575,
+    "B": 2054,
+    "C": 166,
+    "descartado": 1805
+  },
+  "motivos_descarte": {
+    "email_invalido": 315,
+    "email_descartavel": 269,
+    "dominio_sem_mx": 314,
+    "duplicado": 907
+  },
+  "alertas": {
+    "email_pessoal": 3989,
+    "telefone_fixo": 1821,
+    "cnpj_ausente": 1601,
+    "email_funcao": 963,
+    "telefone_ausente": 826,
+    "empresa_ausente": 516,
+    "telefone_invalido": 496,
+    "cnpj_invalido": 445,
+    "email_corrigido": 415,
+    "nome_ausente": 272
+  },
+  "score_medio_validos": 85.0
+}
